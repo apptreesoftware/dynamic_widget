@@ -32,18 +32,21 @@ class ListViewWidgetParser extends WidgetParser {
     var loadMoreUrl =
         map.containsKey("loadMoreUrl") ? map["loadMoreUrl"] : null;
     var isDemo = map.containsKey("isDemo") ? map["isDemo"] : false;
+    var separated = map['separated'] ?? false;
 
     var params = new ListViewParams(
-        scrollDirection: scrollDirection,
-        reverse: reverse,
-        shrinkWrap: shrinkWrap,
-        cacheExtent: cacheExtent,
-        padding: padding,
-        itemExtent: itemExtent,
-        children: children,
-        pageSize: pageSize,
-        loadMoreUrl: loadMoreUrl,
-        isDemo: isDemo);
+      scrollDirection: scrollDirection,
+      reverse: reverse,
+      shrinkWrap: shrinkWrap,
+      cacheExtent: cacheExtent,
+      padding: padding,
+      itemExtent: itemExtent,
+      children: children,
+      pageSize: pageSize,
+      loadMoreUrl: loadMoreUrl,
+      isDemo: isDemo,
+      separated: separated,
+    );
 
     return new ListViewWidget(params, buildContext);
   }
@@ -73,6 +76,7 @@ class ListViewWidgetParser extends WidgetParser {
       "pageSize": realWidget._params.pageSize ?? 10,
       "loadMoreUrl": realWidget._params.loadMoreUrl ?? null,
       "isDemo": realWidget._params.isDemo ?? false,
+      "separated": realWidget._params.separated ?? false,
       "children": DynamicWidgetBuilder.exportWidgets(
           realWidget._params.children!, buildContext)
     };
@@ -128,7 +132,8 @@ class _ListViewWidgetState extends State<ListViewWidget> {
   _getMoreData() async {
     if (!isPerformingRequest) {
       setState(() => isPerformingRequest = true);
-      var jsonString = _params.isDemo! ? await fakeRequest() : await doRequest();
+      var jsonString =
+          _params.isDemo! ? await fakeRequest() : await doRequest();
       var buildWidgets = DynamicWidgetBuilder.buildWidgets(
           jsonDecode(jsonString), widget._buildContext, null);
       setState(() {
@@ -161,6 +166,25 @@ class _ListViewWidgetState extends State<ListViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (_params.separated ?? false) {
+      return ListView.separated(
+        separatorBuilder: (c, i) => Divider(),
+        scrollDirection: _params.scrollDirection ?? Axis.vertical,
+        reverse: _params.reverse ?? false,
+        shrinkWrap: _params.shrinkWrap ?? false,
+        cacheExtent: _params.cacheExtent,
+        padding: _params.padding,
+        itemCount: loadCompleted ? _items.length : _items.length + 1,
+        itemBuilder: (context, index) {
+          if (index == _items.length) {
+            return _buildProgressIndicator();
+          } else {
+            return _items[index]!;
+          }
+        },
+        controller: _scrollController,
+      );
+    }
     return ListView.builder(
       scrollDirection: _params.scrollDirection ?? Axis.vertical,
       reverse: _params.reverse ?? false,
@@ -235,19 +259,22 @@ class ListViewParams {
 
   int? pageSize;
   String? loadMoreUrl;
+  bool? separated;
 
   //use for demo, if true, it will do the fake request.
   bool? isDemo;
 
-  ListViewParams(
-      {this.scrollDirection,
-      this.reverse,
-      this.shrinkWrap,
-      this.cacheExtent,
-      this.padding,
-      this.itemExtent,
-      this.children,
-      this.pageSize,
-      this.loadMoreUrl,
-      this.isDemo});
+  ListViewParams({
+    this.scrollDirection,
+    this.reverse,
+    this.shrinkWrap,
+    this.cacheExtent,
+    this.padding,
+    this.itemExtent,
+    this.children,
+    this.pageSize,
+    this.loadMoreUrl,
+    this.isDemo,
+    this.separated,
+  });
 }

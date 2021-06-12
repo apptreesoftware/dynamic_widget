@@ -18,7 +18,8 @@ class AssetImageWidgetParser extends WidgetParser {
     double? width = map.containsKey('width') ? map['width']?.toDouble() : null;
     double? height =
         map.containsKey('height') ? map['height']?.toDouble() : null;
-    Color? color = map.containsKey('color') ? parseHexColor(map['color']) : null;
+    Color? color =
+        map.containsKey('color') ? parseHexColor(map['color']) : null;
     BlendMode? blendMode =
         map.containsKey('blendMode') ? parseBlendMode(map['blendMode']) : null;
     BoxFit? boxFit =
@@ -99,20 +100,14 @@ class AssetImageWidgetParser extends WidgetParser {
             ? exportBlendMode(realWidget.colorBlendMode)
             : null,
         "fit": realWidget.fit != null ? exportBoxFit(realWidget.fit) : null,
-        "alignment": realWidget.alignment != null
-            ? exportAlignment(realWidget.alignment as Alignment?)
-            : null,
-        "repeat": realWidget.repeat != null
-            ? exportImageRepeat(realWidget.repeat)
-            : null,
+        "alignment": exportAlignment(realWidget.alignment as Alignment?),
+        "repeat": exportImageRepeat(realWidget.repeat),
         "centerSlice": realWidget.centerSlice != null
             ? exportRect(realWidget.centerSlice!)
             : null,
         "matchTextDirection": realWidget.matchTextDirection,
         "gaplessPlayback": realWidget.gaplessPlayback,
-        "filterQuality": realWidget.filterQuality != null
-            ? exportFilterQuality(realWidget.filterQuality)
-            : null
+        "filterQuality": realWidget.filterQuality,
       };
     }
 
@@ -139,20 +134,14 @@ class AssetImageWidgetParser extends WidgetParser {
             ? exportBlendMode(realWidget.colorBlendMode)
             : null,
         "fit": realWidget.fit != null ? exportBoxFit(realWidget.fit) : null,
-        "alignment": realWidget.alignment != null
-            ? exportAlignment(realWidget.alignment as Alignment?)
-            : null,
-        "repeat": realWidget.repeat != null
-            ? exportImageRepeat(realWidget.repeat)
-            : null,
+        "alignment": exportAlignment(realWidget.alignment as Alignment?),
+        "repeat": exportImageRepeat(realWidget.repeat),
         "centerSlice": realWidget.centerSlice != null
             ? exportRect(realWidget.centerSlice!)
             : null,
         "matchTextDirection": realWidget.matchTextDirection,
         "gaplessPlayback": realWidget.gaplessPlayback,
-        "filterQuality": realWidget.filterQuality != null
-            ? exportFilterQuality(realWidget.filterQuality)
-            : null
+        "filterQuality": realWidget.filterQuality
       };
     }
 
@@ -207,7 +196,8 @@ class NetworkImageWidgetParser extends WidgetParser {
     double? width = map.containsKey('width') ? map['width']?.toDouble() : null;
     double? height =
         map.containsKey('height') ? map['height']?.toDouble() : null;
-    Color? color = map.containsKey('color') ? parseHexColor(map['color']) : null;
+    Color? color =
+        map.containsKey('color') ? parseHexColor(map['color']) : null;
     BlendMode? blendMode =
         map.containsKey('blendMode') ? parseBlendMode(map['blendMode']) : null;
     BoxFit? boxFit =
@@ -287,20 +277,14 @@ class NetworkImageWidgetParser extends WidgetParser {
           ? exportBlendMode(realWidget.colorBlendMode)
           : null,
       "fit": realWidget.fit != null ? exportBoxFit(realWidget.fit) : null,
-      "alignment": realWidget.alignment != null
-          ? exportAlignment(realWidget.alignment as Alignment?)
-          : null,
-      "repeat": realWidget.repeat != null
-          ? exportImageRepeat(realWidget.repeat)
-          : null,
+      "alignment": realWidget.alignment,
+      "repeat": realWidget.repeat,
       "centerSlice": realWidget.centerSlice != null
           ? exportRect(realWidget.centerSlice!)
           : null,
       "matchTextDirection": realWidget.matchTextDirection,
       "gaplessPlayback": realWidget.gaplessPlayback,
-      "filterQuality": realWidget.filterQuality != null
-          ? exportFilterQuality(realWidget.filterQuality)
-          : null
+      "filterQuality": realWidget.filterQuality,
     };
   }
 

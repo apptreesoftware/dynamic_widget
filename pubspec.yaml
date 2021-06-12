@@ -15,10 +15,14 @@ dependencies:
   http: ^0.13.1
 
   font_awesome_flutter: ^9.0.0
+  json_annotation: ^4.0.0
+  syncfusion_flutter_gauges: ^19.1.67
+  build_runner: ^2.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  json_serializable: ^4.1.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

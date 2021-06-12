@@ -1042,7 +1042,7 @@ Map<String, dynamic>? exportDropCap(DropCap? dropCap, BuildContext? buildContext
   };
 }
 
-String exportAlignmentDirectional(AlignmentDirectional alignmentDirectional){
+String exportAlignmentDirectional(AlignmentDirectional alignmentDirectional) {
 
   if (alignmentDirectional == AlignmentDirectional.bottomCenter) {
     return "bottomCenter";
@@ -1136,4 +1136,17 @@ Map<String, dynamic> exportConstraints(BoxConstraints constraints) {
         ? infinity
         : constraints.maxHeight,
   };
+}
+
+double? parseDouble(dynamic val) {
+  if (val == null) {
+    return null;
+  }
+  if (val is int) {
+    return val.toDouble();
+  } else if (val is String) {
+    return double.tryParse(val) ?? 0;
+  } else {
+    return val as double;
+  }
 }
