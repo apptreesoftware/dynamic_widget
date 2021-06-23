@@ -9,6 +9,7 @@ class RaisedButtonParser extends WidgetParser {
     String? clickEvent =
         map.containsKey("click_event") ? map['click_event'] : "";
 
+    // ignore: deprecated_member_use
     var raisedButton = RaisedButton(
       color: map.containsKey('color') ? parseHexColor(map['color']) : null,
       disabledColor: map.containsKey('disabledColor')
@@ -45,6 +46,7 @@ class RaisedButtonParser extends WidgetParser {
 
   @override
   Map<String, dynamic> export(Widget? widget, BuildContext? buildContext) {
+    // ignore: deprecated_member_use
     var realWidget = widget as RaisedButton;
     var padding = realWidget.padding as EdgeInsets?;
 
@@ -75,5 +77,6 @@ class RaisedButtonParser extends WidgetParser {
   }
 
   @override
+  // ignore: deprecated_member_use
   Type get widgetType => RaisedButton;
 }
