@@ -37,7 +37,6 @@ import 'package:logging/logging.dart';
 
 import 'dynamic_widget/basic/cliprrect_widget_parser.dart';
 import 'dynamic_widget/basic/overflowbox_widget_parser.dart';
-import 'dynamic_widget/syncfusion/linear_progress_bar.dart';
 
 class DynamicWidgetBuilder {
   static final Logger log = Logger('DynamicWidget');
@@ -79,7 +78,6 @@ class DynamicWidgetBuilder {
     LimitedBoxWidgetParser(),
     OffstageWidgetParser(),
     OverflowBoxWidgetParser(),
-    LabeledProgressBarParser()
   ];
 
   static final _widgetNameParserMap = <String, WidgetParser>{};
