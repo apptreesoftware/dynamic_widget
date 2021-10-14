@@ -1190,3 +1190,16 @@ Radius parseRadius(String radius) {
     return Radius.zero;
   }
 }
+
+double? parseDouble(dynamic val) {
+  if (val == null) {
+    return null;
+  }
+  if (val is int) {
+    return val.toDouble();
+  } else if (val is String) {
+    return double.tryParse(val) ?? 0;
+  } else {
+    return val as double;
+  }
+}
