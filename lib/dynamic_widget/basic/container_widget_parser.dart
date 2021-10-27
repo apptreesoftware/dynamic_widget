@@ -12,6 +12,8 @@ class ContainerWidgetParser extends WidgetParser {
     //TODO: decoration, foregroundDecoration and transform properties to be implemented.
     EdgeInsetsGeometry? margin = parseEdgeInsetsGeometry(map['margin']);
     EdgeInsetsGeometry? padding = parseEdgeInsetsGeometry(map['padding']);
+    BoxDecoration? decoration = parseBoxDecoration(map['decoration']);
+
     Map<String, dynamic>? childMap = map['child'];
     Widget? child = childMap == null
         ? null
@@ -23,7 +25,8 @@ class ContainerWidgetParser extends WidgetParser {
     var containerWidget = Container(
       alignment: alignment,
       padding: padding,
-      color: color,
+      color: decoration == null ? color : null,
+      decoration: decoration,
       margin: margin,
       width: map['width']?.toDouble(),
       height: map['height']?.toDouble(),
@@ -52,6 +55,7 @@ class ContainerWidgetParser extends WidgetParser {
     var padding = realWidget.padding as EdgeInsets?;
     var margin = realWidget.margin as EdgeInsets?;
     var constraints = realWidget.constraints;
+    var decoration = realWidget.decoration;
     return <String, dynamic>{
       "type": widgetName,
       "alignment": realWidget.alignment != null
@@ -68,6 +72,9 @@ class ContainerWidgetParser extends WidgetParser {
           : null,
       "constraints":
           constraints != null ? exportConstraints(constraints) : null,
+      "decoration": decoration != null
+          ? exportBoxDecoration(decoration as BoxDecoration)
+          : null,
       "child": DynamicWidgetBuilder.export(realWidget.child, buildContext)
     };
   }

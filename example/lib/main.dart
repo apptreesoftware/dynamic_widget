@@ -557,11 +557,12 @@ class PreviewPage extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               var exportJsonString = _exportor?.exportJsonString();
-              if (exportJsonString!=null)
+              if (exportJsonString != null)
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => CodeEditorPage(exportJsonString)));
+                        builder: (context) =>
+                            CodeEditorPage(exportJsonString)));
             },
             child: Text("export json code"),
           )
@@ -607,16 +608,121 @@ class _JSONExporterState extends State<JSONExporter> {
               Expanded(
                 child: DynamicWidgetJsonExportor(
                   key: key,
-                  child: Stack(
-                    alignment: Alignment.topLeft,
-                    children: [
-                      Image.asset("assets/vip.png"),
-                      Positioned(
-                        child: Image.asset("assets/vip.png"),
-                        top: 50,
-                        left: 50,
-                      )
-                    ],
+                  child: Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "11811",
+                                style: TextStyle(
+                                    color: Colors.blueAccent, fontSize: 18),
+                              )
+                            ],
+                          ),
+                          Text("Main Campus HVAC Install"),
+                          SizedBox(height: 8),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    Text("Property"),
+                                    Container(
+                                      margin: EdgeInsets.only(right: 4),
+                                      padding: EdgeInsets.only(
+                                          left: 8, top: 4, right: 8, bottom: 4),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(4),
+                                        color:
+                                            Color.fromARGB(255, 240, 240, 240),
+                                      ),
+                                      child: Text("Property Name"),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    Text("Create Date"),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(4),
+                                        color:
+                                            Color.fromARGB(255, 240, 240, 240),
+                                      ),
+                                      margin: EdgeInsets.only(left: 4),
+                                      padding: EdgeInsets.only(
+                                          left: 8, top: 4, right: 8, bottom: 4),
+                                      child: Text("Property Name"),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(height: 4),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text("Statement of work"),
+                              Container(
+                                margin: EdgeInsets.only(right: 4),
+                                padding: EdgeInsets.only(
+                                    left: 8, top: 4, right: 8, bottom: 4),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: Color.fromARGB(255, 240, 240, 240),
+                                ),
+                                child: Text("Statement of work value"),
+                              )
+                            ],
+                          ),
+                          SizedBox(height: 4),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text("Asset Item"),
+                              Container(
+                                margin: EdgeInsets.only(right: 4),
+                                padding: EdgeInsets.only(
+                                    left: 8, top: 4, right: 8, bottom: 4),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: Color.fromARGB(255, 240, 240, 240),
+                                ),
+                                child: Text("Asset Item Value value"),
+                              )
+                            ],
+                          ),
+                          Divider(),
+                          Row(
+                            //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                  child: Text("Open",
+                                      textAlign: TextAlign.center)),
+                              Expanded(
+                                  child:
+                                      Text("N/A", textAlign: TextAlign.center)),
+                              Expanded(
+                                  child: Text("Due: 9/8/2021",
+                                      textAlign: TextAlign.center))
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),

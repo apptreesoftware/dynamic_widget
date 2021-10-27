@@ -1206,3 +1206,33 @@ double? parseDouble(dynamic val) {
     return val as double;
   }
 }
+
+BoxDecoration? parseBoxDecoration(Map<String, dynamic>? map) {
+  if (map == null) return null;
+  var radius = parseRadius(map['borderRadius'] ?? '');
+  var color = parseHexColor(map['color']);
+  var border = parseBorderSide(map['border']);
+  BoxBorder? boxBorder;
+  if (border != BorderSide.none) {
+    boxBorder = Border.all(
+        color: border.color, width: border.width, style: border.style);
+  }
+  return BoxDecoration(
+      color: color, borderRadius: BorderRadius.all(radius), border: boxBorder);
+}
+
+Map<String, dynamic>? exportBoxDecoration(BoxDecoration? boxDecoration) {
+  if (boxDecoration == null) return null;
+  var map = <String, dynamic>{};
+  if (boxDecoration.borderRadius != null) {
+    map['borderRadius'] =
+        exportBorderRadius(boxDecoration.borderRadius as BorderRadius);
+  }
+  if (boxDecoration.color != null) {
+    map['color'] = boxDecoration.color!.value.toRadixString(16);
+  }
+  if (boxDecoration.border != null) {
+    map['border'] = exportBorderSide(boxDecoration.border!.top);
+  }
+  return map;
+}

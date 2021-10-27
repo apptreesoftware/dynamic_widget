@@ -59,10 +59,10 @@ class CardParser extends WidgetParser {
       ClickListener? listener) {
     final Color? color = parseHexColor(map['color']);
     final Color? shadowColor = parseHexColor(map['shadowColor']);
-    final double? elevation = map['elevation'];
-    final bool borderOnForeground = map['borderOnForeground'];
+    final double? elevation = map['elevation']?.toDouble();
+    final bool? borderOnForeground = map['borderOnForeground'];
     final EdgeInsetsGeometry? margin = parseEdgeInsetsGeometry(map['margin']);
-    final bool semanticContainer = map['semanticContainer'];
+    final bool? semanticContainer = map['semanticContainer'];
     final Clip clipBehavior = parseClipBehavior(map['clipBehavior']);
     final Map<String, dynamic>? childMap = map['child'];
     final Widget? child = childMap == null
@@ -76,9 +76,9 @@ class CardParser extends WidgetParser {
       shadowColor: shadowColor,
       elevation: elevation,
       shape: shape,
-      borderOnForeground: borderOnForeground,
+      borderOnForeground: borderOnForeground ?? true,
       margin: margin,
-      semanticContainer: semanticContainer,
+      semanticContainer: semanticContainer ?? true,
       clipBehavior: clipBehavior,
       child: child,
     );
