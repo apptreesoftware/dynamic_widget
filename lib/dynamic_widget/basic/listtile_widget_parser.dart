@@ -44,7 +44,7 @@ class ListTileWidgetParser extends WidgetParser {
       contentPadding: contentPadding,
       enabled: enabled,
       onTap: () {
-        if (listener != null && tapEvent != null) {
+        if (listener != null) {
           listener.onClicked(tapEvent);
         }
       },
