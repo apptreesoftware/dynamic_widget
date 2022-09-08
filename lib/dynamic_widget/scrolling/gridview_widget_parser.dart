@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:dynamic_widget/dynamic_widget.dart';
 import 'package:dynamic_widget/dynamic_widget/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 
 class GridViewWidgetParser extends WidgetParser {
@@ -18,7 +17,8 @@ class GridViewWidgetParser extends WidgetParser {
     }
     int? crossAxisCount = map['crossAxisCount'];
     bool? reverse = map.containsKey("reverse") ? map['reverse'] : false;
-    bool? shrinkWrap = map.containsKey("shrinkWrap") ? map["shrinkWrap"] : false;
+    bool? shrinkWrap =
+        map.containsKey("shrinkWrap") ? map["shrinkWrap"] : false;
     double? cacheExtent =
         map.containsKey("cacheExtent") ? map["cacheExtent"]?.toDouble() : 0.0;
     EdgeInsetsGeometry? padding = map.containsKey('padding')
@@ -142,7 +142,8 @@ class _GridViewWidgetState extends State<GridViewWidget> {
   _getMoreData() async {
     if (!isPerformingRequest) {
       setState(() => isPerformingRequest = true);
-      var jsonString = _params.isDemo! ? await fakeRequest() : await doRequest();
+      var jsonString =
+          _params.isDemo! ? await fakeRequest() : await doRequest();
       var buildWidgets = DynamicWidgetBuilder.buildWidgets(
           jsonDecode(jsonString), widget._buildContext, null);
       setState(() {

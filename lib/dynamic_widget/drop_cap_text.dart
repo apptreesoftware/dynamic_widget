@@ -2,7 +2,6 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 enum DropCapMode {
   /// default
@@ -29,9 +28,7 @@ class DropCap extends StatelessWidget {
     this.child,
     required this.width,
     required this.height,
-  })  : assert(width != null),
-        assert(height != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +70,7 @@ class DropCapText extends StatelessWidget {
       this.overflow,
       this.maxLines,
       this.dropCapPosition})
-      : assert(data != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

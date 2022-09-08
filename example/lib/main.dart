@@ -4,8 +4,6 @@ import 'package:demo/widget_json.dart';
 import 'package:dynamic_widget/dynamic_widget.dart';
 import 'package:dynamic_widget/dynamic_widget/basic/dynamic_widget_json_exportor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 
 void main() => runApp(MyApp());
 

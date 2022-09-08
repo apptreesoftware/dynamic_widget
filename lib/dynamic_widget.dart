@@ -42,6 +42,8 @@ import 'dynamic_widget/basic/cliprrect_widget_parser.dart';
 import 'dynamic_widget/basic/overflowbox_widget_parser.dart';
 import 'dynamic_widget/basic/rotatedbox_widget_parser.dart';
 
+export 'package:dynamic_widget/dynamic_widget/icons_helper.dart';
+
 class DynamicWidgetBuilder {
   static final Logger log = Logger('DynamicWidget');
 
@@ -112,7 +114,7 @@ class DynamicWidgetBuilder {
   }
 
   static Widget? build(
-      String json, BuildContext buildContext, ClickListener listener) {
+      String json, BuildContext buildContext, ClickListener? listener) {
     initDefaultParsersIfNess();
     var map = jsonDecode(json);
     ClickListener _listener =

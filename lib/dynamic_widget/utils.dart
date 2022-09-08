@@ -1,8 +1,6 @@
-import 'dart:ui';
-
 import 'package:dynamic_widget/dynamic_widget.dart';
 import 'package:dynamic_widget/dynamic_widget/drop_cap_text.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 TextAlign parseTextAlign(String? textAlignString) {
   //left the system decide
@@ -74,7 +72,7 @@ TextOverflow? parseTextOverflow(String? textOverflowString) {
 }
 
 String? exportTextOverflow(TextOverflow? textOverflow) {
-  if(textOverflow == null){
+  if (textOverflow == null) {
     return null;
   }
   String rt = "ellipsis";
@@ -1235,4 +1233,10 @@ Map<String, dynamic>? exportBoxDecoration(BoxDecoration? boxDecoration) {
     map['border'] = exportBorderSide(boxDecoration.border!.top);
   }
   return map;
+}
+
+extension MaterialPropertyExt<T> on MaterialStateProperty<T> {
+  T resolveAll() {
+    return this.resolve(Set.of(MaterialState.values));
+  }
 }
