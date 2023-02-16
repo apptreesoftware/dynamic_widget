@@ -14,8 +14,8 @@ dependencies:
 
   http: ^0.13.4
 
-  font_awesome_flutter_named: ^1.1.1
-  material_icons_named: ^3.3.0
+  font_awesome_flutter_named: ^1.1.2+1
+  material_icons_named: ^3.7.0
 
 dev_dependencies:
   flutter_test:
